@@ -5,8 +5,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const app = express();
+const bodyParser = require('body-parser');
+const config = require('./config/key');
 
-mongoose.connect('mongodb+srv://sungmo:witi31338@testcluster-xd5kb.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect(config.mongoURI, {
   useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false,
 })
   .then(() => console.log('MongoDB Connected...'))
@@ -14,6 +16,10 @@ mongoose.connect('mongodb+srv://sungmo:witi31338@testcluster-xd5kb.mongodb.net/t
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(bodyParser.json());
 
 
 

@@ -6,8 +6,6 @@ router.get('/', function(req, res, next) {
   
   let data = { title: 'Express' };
 
-  data.title = 'Hello Express!!';
-
   res.render('index', data);
 });
 
